@@ -48,7 +48,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen pb-40">
+    <div className="min-h-screen pb-40 overflow-x-hidden">
       <BambooScroll />
       
       <div className="container mx-auto p-6 max-w-4xl relative z-10">
