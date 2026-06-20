@@ -9,11 +9,37 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import * as Icons from "lucide-react";
 import { calculateCurrentStreak, calculateLongestStreak, normalizeDate } from "@/lib/streak";
 import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function HabitsPage() {
   const { habits, addHabit, updateHabit, deleteHabit, isLoaded } = useHabits();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOption, setSortOption] = useState("newest");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  // Keyboard Shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Cmd/Ctrl + F to focus search
+      if ((e.metaKey || e.ctrlKey) && e.key === "f") {
+        e.preventDefault();
+        searchInputRef.current?.focus();
+      }
+      // N to open create modal (only if not typing in an input)
+      if (e.key === "n" && document.activeElement?.tagName !== "INPUT" && document.activeElement?.tagName !== "TEXTAREA") {
+        e.preventDefault();
+        setIsCreateOpen(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   if (!isLoaded) return null;
 
@@ -29,6 +55,16 @@ export default function HabitsPage() {
     }
   };
 
+  // Derived State: Filter & Sort
+  const filteredHabits = habits.filter(h => h.name.toLowerCase().includes(searchQuery.toLowerCase()));
+  const sortedHabits = [...filteredHabits].sort((a, b) => {
+    if (sortOption === "a-z") return a.name.localeCompare(b.name);
+    if (sortOption === "streak") {
+      return calculateCurrentStreak(b.completedDates, b.schedule) - calculateCurrentStreak(a.completedDates, a.schedule);
+    }
+    return 0; // "newest" by default, assumes habits array is stored chronologically
+  });
+
   return (
     <div className="container mx-auto p-6 max-w-5xl">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
@@ -37,6 +73,7 @@ export default function HabitsPage() {
           <p className="text-muted-foreground mt-1">Manage your daily goals and track your streaks.</p>
         </div>
         <div className="flex gap-3">
+          <ThemeToggle />
           <Link href="/dashboard">
             <Button variant="outline">Back to Dashboard</Button>
           </Link>
@@ -54,6 +91,32 @@ export default function HabitsPage() {
         </div>
       </div>
 
+      {/* Toolbar: Search & Sort */}
+      {habits.length > 0 && (
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
+          <div className="relative flex-1">
+            <Icons.Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input 
+              ref={searchInputRef}
+              placeholder="Search habits... (Cmd+F)" 
+              className="pl-9"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          <Select value={sortOption} onValueChange={setSortOption}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Sort by" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="newest">Newest First</SelectItem>
+              <SelectItem value="a-z">A-Z</SelectItem>
+              <SelectItem value="streak">Highest Streak</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      )}
+
       {habits.length === 0 ? (
         <div className="text-center py-24 bg-card rounded-2xl border shadow-sm">
           <Icons.Leaf className="w-16 h-16 mx-auto text-muted-foreground/30 mb-4" />
@@ -62,15 +125,24 @@ export default function HabitsPage() {
           <Button onClick={() => setIsCreateOpen(true)}>Create Your First Habit</Button>
         </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {habits.map((habit) => {
+        <motion.div layout className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence>
+          {sortedHabits.map((habit) => {
             // @ts-ignore
             const Icon = Icons[habit.icon] || Icons.Target;
             const currentStreak = calculateCurrentStreak(habit.completedDates, habit.schedule);
             const longestStreak = calculateLongestStreak(habit.completedDates, habit.schedule);
 
             return (
-              <div key={habit.id} className="p-5 rounded-2xl border bg-card text-card-foreground shadow-sm flex flex-col gap-5 hover:shadow-md transition-shadow">
+              <motion.div 
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                key={habit.id} 
+                className="p-5 rounded-2xl border bg-card text-card-foreground shadow-sm flex flex-col gap-5 hover:shadow-md transition-shadow"
+              >
               <div className="flex items-center gap-4">
                 <div className="p-3 rounded-xl" style={{ backgroundColor: `${habit.color}15`, color: habit.color }}>
                   <Icon className="w-7 h-7" />
@@ -127,10 +199,11 @@ export default function HabitsPage() {
                   <Button variant="ghost" size="sm" className="h-8" onClick={() => setEditingId(habit.id)}>Edit</Button>
                   <Button variant="destructive" size="sm" className="h-8" onClick={() => deleteHabit(habit.id)}>Delete</Button>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+          </AnimatePresence>
+        </motion.div>
       )}
 
       <Dialog open={!!editingId} onOpenChange={(open) => !open && setEditingId(null)}>

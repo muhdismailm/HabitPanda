@@ -12,6 +12,8 @@ import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { PandaModel } from "@/components/panda/PandaModel";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { ActivityHeatmap } from "@/components/dashboard/ActivityHeatmap";
 
 export default function DashboardPage() {
   const { habits, toggleCompletion, isLoaded: habitsLoaded } = useHabits();
@@ -53,6 +55,16 @@ export default function DashboardPage() {
       
       <div className="container mx-auto p-6 max-w-4xl relative z-10">
         
+        {/* Header Actions */}
+        <div className="flex justify-end gap-3 mb-6">
+          <ThemeToggle />
+          <Link href="/settings">
+            <Button variant="outline" size="icon">
+              <Icons.Settings className="w-5 h-5" />
+            </Button>
+          </Link>
+        </div>
+
         {/* Top Section: Panda Stats */}
         <section className="bg-card text-card-foreground rounded-3xl p-8 border shadow-sm mb-8 flex flex-col md:flex-row gap-8 items-center justify-between">
           <div className="flex items-center gap-6">
@@ -145,8 +157,11 @@ export default function DashboardPage() {
           )}
         </section>
 
+        {/* Activity Heatmap */}
+        <ActivityHeatmap habits={habits} />
+
         {/* Bottom Section: Progress Summary */}
-        <section className="grid md:grid-cols-2 gap-6 mb-24">
+        <section className="grid md:grid-cols-2 gap-6 mb-24 mt-8">
           <div className="bg-card p-6 rounded-2xl border shadow-sm">
             <h3 className="font-semibold text-muted-foreground mb-4 uppercase tracking-wider text-sm">Daily Progress</h3>
             <div className="flex items-end gap-4">
