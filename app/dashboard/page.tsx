@@ -50,7 +50,12 @@ export default function DashboardPage() {
   };
 
   return (
-    <div className="min-h-screen pb-40 overflow-x-hidden">
+    <div className="min-h-screen pb-40 overflow-x-hidden bg-gradient-to-b from-green-50/30 via-transparent to-green-100/30 dark:from-green-950/20 dark:to-green-900/20 relative">
+      {/* Decorative background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-green-400/10 blur-[100px]" />
+        <div className="absolute top-[40%] right-[-10%] w-[30%] h-[30%] rounded-full bg-emerald-500/10 blur-[100px]" />
+      </div>
       <BambooScroll />
       
       <div className="container mx-auto p-6 max-w-4xl relative z-10">
@@ -66,12 +71,12 @@ export default function DashboardPage() {
         </div>
 
         {/* Top Section: Panda Stats */}
-        <section className="bg-card text-card-foreground rounded-3xl p-8 border shadow-sm mb-8 flex flex-col md:flex-row gap-8 items-center justify-between">
+        <section className="bg-card/80 backdrop-blur-xl text-card-foreground rounded-[2rem] p-8 border border-white/20 dark:border-white/5 shadow-lg shadow-green-900/5 mb-8 flex flex-col md:flex-row gap-8 items-center justify-between">
           <div className="flex items-center gap-6">
-            <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center relative overflow-hidden shrink-0">
+            <div className="w-36 h-36 bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900 dark:to-green-800 rounded-full flex items-center justify-center relative overflow-hidden shrink-0 shadow-inner border-4 border-white/50 dark:border-white/10">
               <Canvas camera={{ position: [0, 1.5, 4], fov: 50 }}>
-                <ambientLight intensity={0.6} />
-                <directionalLight position={[10, 10, 5]} intensity={1} />
+                <ambientLight intensity={0.7} />
+                <directionalLight position={[10, 10, 5]} intensity={1.2} color="#f0fdf4" />
                 <PandaModel mood={mood} stage={stage.name} />
                 <Environment preset="forest" />
               </Canvas>
@@ -116,7 +121,7 @@ export default function DashboardPage() {
           </div>
 
           {todaysHabits.length === 0 ? (
-            <div className="p-8 text-center bg-card rounded-2xl border border-dashed">
+            <div className="p-8 text-center bg-card/80 backdrop-blur-md rounded-[2rem] border border-dashed border-primary/30">
               <p className="text-muted-foreground mb-4">Nothing scheduled for today.</p>
               <Link href="/habits">
                 <Button>Add a Habit</Button>
@@ -132,7 +137,7 @@ export default function DashboardPage() {
                 return (
                   <div 
                     key={habit.id} 
-                    className={`p-4 rounded-2xl border transition-all flex items-center justify-between cursor-pointer hover:shadow-md ${isCompleted ? 'bg-primary/5 border-primary/20' : 'bg-card'}`}
+                    className={`p-4 rounded-[1.5rem] border transition-all duration-300 flex items-center justify-between cursor-pointer hover:shadow-lg hover:scale-[1.01] ${isCompleted ? 'bg-primary/10 border-primary/30 backdrop-blur-md' : 'bg-card/80 backdrop-blur-md border-white/20 dark:border-white/5'}`}
                     onClick={() => handleToggle(habit.id)}
                   >
                     <div className="flex items-center gap-4">
@@ -162,7 +167,7 @@ export default function DashboardPage() {
 
         {/* Bottom Section: Progress Summary */}
         <section className="grid md:grid-cols-2 gap-6 mb-24 mt-8">
-          <div className="bg-card p-6 rounded-2xl border shadow-sm">
+          <div className="bg-card/80 backdrop-blur-xl p-6 rounded-[2rem] border border-white/20 dark:border-white/5 shadow-lg shadow-green-900/5">
             <h3 className="font-semibold text-muted-foreground mb-4 uppercase tracking-wider text-sm">Daily Progress</h3>
             <div className="flex items-end gap-4">
               <span className="text-5xl font-black">{Math.round(completionRate)}%</span>
@@ -173,7 +178,7 @@ export default function DashboardPage() {
             </div>
           </div>
           
-          <div className="bg-card p-6 rounded-2xl border shadow-sm">
+          <div className="bg-card/80 backdrop-blur-xl p-6 rounded-[2rem] border border-white/20 dark:border-white/5 shadow-lg shadow-green-900/5">
              <h3 className="font-semibold text-muted-foreground mb-4 uppercase tracking-wider text-sm">Jungle Stats</h3>
              <ul className="space-y-3">
                <li className="flex justify-between items-center border-b pb-2">

@@ -16,7 +16,7 @@ import { useEffect, useRef } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function HabitsPage() {
-  const { habits, addHabit, updateHabit, deleteHabit, isLoaded } = useHabits();
+  const { habits, addHabit, updateHabit, deleteHabit, toggleCompletion, isLoaded } = useHabits();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
