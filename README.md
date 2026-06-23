@@ -77,16 +77,3 @@ Habits shouldn't be boring.
 - **Mood Engine:** The Panda's mood (and its idle animation) dynamically changes to Happy, Neutral, or Sad based on the completion rate of *today's scheduled habits*.
 
 ---
-
-## 🤖 AI Usage
-
-This project was built pair-programming with Antigravity, leveraging a step-by-step phased approach focusing on robust core logic before moving to complex visual layers like React Three Fiber.
-
----
-
-## 🔮 Future Improvements
-
-- **Cloud Sync:** Integrate Firebase or Supabase to sync the `localStorage` data across multiple devices.
-- **Detailed Analytics:** Add charts using Recharts to visualize completion trends over months.
-- **Expanded Shop:** Allow purchasing different colors for the Panda, different hats, and environments.
-- **PWA Support:** Configure the app as a Progressive Web App so it can be installed natively on iOS/Android.
