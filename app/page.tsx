@@ -29,11 +29,11 @@ export default function Home() {
 
       <div className="relative z-10">
         {/* Hero Section */}
-        <section className="relative flex flex-col items-center justify-center text-center py-32 px-6">
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight max-w-4xl text-stone-900 dark:text-amber-100">
+        <section className="relative flex flex-col items-center justify-center text-center py-20 md:py-32 px-4 md:px-6">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight max-w-4xl text-stone-900 dark:text-amber-100 leading-[1.15]">
             Grow Better Habits With Your <span className="text-emerald-600 dark:text-green-500">Panda Companion</span>
           </h1>
-          <p className="mt-6 text-xl text-stone-700 dark:text-amber-200 font-semibold max-w-2xl">
+          <p className="mt-6 text-base sm:text-lg md:text-xl text-stone-700 dark:text-amber-200 font-medium md:font-semibold max-w-2xl px-2">
             Build better habits with your panda companion. Stay consistent, earn rewards, grow your streaks, and transform a small bamboo grove into a thriving jungle of achievement.
           </p>
           <Link href="/dashboard" className="mt-10">
