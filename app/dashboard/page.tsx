@@ -174,6 +174,8 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        <hr className="my-8 md:my-10 border-t-2 border-stone-200 dark:border-stone-800" />
+
         {/* Middle Section: Today's Habits */}
         <section className="mt-18 md:mt-0 mb-10 md:mb-12">
           <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-end gap-3 sm:gap-0 mb-4 md:mb-6">
@@ -261,6 +263,8 @@ export default function DashboardPage() {
             <ActivityHeatmap habits={habits} />
           </div>
         </div>
+
+        <hr className="my-8 md:my-10 border-t-2 border-stone-200 dark:border-stone-800" />
 
         {/* Bottom Section: Summary Stats */}
         <section className="grid md:grid-cols-3 gap-4 md:gap-6 mb-24">
