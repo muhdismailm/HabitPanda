@@ -301,6 +301,14 @@ export default function DashboardPage() {
             </Button>
           </Link>
           <div className="flex gap-3">
+            <Link href="/den">
+              <Button
+                variant="outline"
+                className="border-2 border-stone-800 dark:border-amber-200 hover:bg-amber-100 dark:hover:bg-amber-900/20 font-bold gap-2 text-amber-700 dark:text-amber-400"
+              >
+                <Icons.Store className="w-4 h-4" /> The Den
+              </Button>
+            </Link>
             <ThemeToggle />
             <Link href="/settings">
               <Button
@@ -323,11 +331,11 @@ export default function DashboardPage() {
 
           {/* Panda Display */}
           <div className="flex items-center gap-6 relative z-10">
-            <div className="w-32 h-32 bg-gradient-to-br from-amber-100 to-stone-100 dark:from-amber-900/30 dark:to-stone-800/30 rounded-3xl flex items-center justify-center relative overflow-hidden shrink-0 border-2 border-stone-800 dark:border-amber-200">
-              <Canvas camera={{ position: [0, 1.5, 4], fov: 50 }}>
+            <div className="w-40 h-40 bg-gradient-to-br from-amber-100 to-stone-100 dark:from-amber-900/30 dark:to-stone-800/30 rounded-3xl flex items-center justify-center relative overflow-hidden shrink-0 border-2 border-stone-800 dark:border-amber-200">
+              <Canvas camera={{ position: [0, 2.0, 6], fov: 55 }}>
                 <ambientLight intensity={0.6} />
                 <directionalLight position={[10, 10, 5]} intensity={1} />
-                <PandaModel mood={mood} stage={stage.name} />
+                <PandaModel mood={mood} stage={stage.name} equipped={panda.equipped} />
                 <Environment preset="forest" />
               </Canvas>
             </div>
@@ -416,8 +424,8 @@ export default function DashboardPage() {
                   <div
                     key={habit.id}
                     className={`p-5 rounded-3xl border-2 transition-all transform hover:scale-102 cursor-pointer shadow-md hover:shadow-lg ${isCompleted
-                        ? 'bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/20 border-green-500 dark:border-green-400'
-                        : 'bg-gradient-to-br from-white to-stone-50 dark:from-stone-800 dark:to-stone-900 border-stone-800 dark:border-amber-200'
+                      ? 'bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/20 border-green-500 dark:border-green-400'
+                      : 'bg-gradient-to-br from-white to-stone-50 dark:from-stone-800 dark:to-stone-900 border-stone-800 dark:border-amber-200'
                       }`}
                     onClick={() => handleToggle(habit.id)}
                   >
@@ -425,8 +433,8 @@ export default function DashboardPage() {
                       <div className="flex items-center gap-4">
                         {/* Icon Badge */}
                         <div className={`p-3 rounded-2xl transition-all border-2 font-bold text-lg ${isCompleted
-                            ? 'bg-green-500 dark:bg-green-600 text-white border-green-600 dark:border-green-500'
-                            : 'bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-amber-200 border-stone-800 dark:border-amber-200'
+                          ? 'bg-green-500 dark:bg-green-600 text-white border-green-600 dark:border-green-500'
+                          : 'bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-amber-200 border-stone-800 dark:border-amber-200'
                           }`}>
                           <Icon className="w-6 h-6" />
                         </div>
@@ -434,8 +442,8 @@ export default function DashboardPage() {
                         {/* Habit Info */}
                         <div>
                           <h3 className={`font-black text-lg transition-all ${isCompleted
-                              ? 'line-through text-stone-500 dark:text-stone-400'
-                              : 'text-stone-900 dark:text-amber-100'
+                            ? 'line-through text-stone-500 dark:text-stone-400'
+                            : 'text-stone-900 dark:text-amber-100'
                             }`}>
                             {habit.name}
                           </h3>
@@ -445,8 +453,8 @@ export default function DashboardPage() {
 
                       {/* Completion Circle */}
                       <div className={`w-10 h-10 rounded-full border-3 flex items-center justify-center transition-all font-bold text-lg ${isCompleted
-                          ? 'bg-green-500 dark:bg-green-600 border-green-600 dark:border-green-500 text-white'
-                          : 'border-stone-800 dark:border-amber-200 text-stone-400'
+                        ? 'bg-green-500 dark:bg-green-600 border-green-600 dark:border-green-500 text-white'
+                        : 'border-stone-800 dark:border-amber-200 text-stone-400'
                         }`}>
                         {isCompleted && <Icons.Check className="w-6 h-6" />}
                       </div>

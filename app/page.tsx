@@ -9,7 +9,7 @@ export default function Home() {
       <div className="absolute top-6 right-6 z-50">
         <ThemeToggle />
       </div>
-      
+
       {/* Panda Den Background - Mountains and Bamboo */}
       <div className="fixed inset-0 pointer-events-none z-0">
         <svg className="absolute bottom-0 w-full h-96 opacity-5 dark:opacity-10" viewBox="0 0 1200 400" preserveAspectRatio="xMidYMid slice">
@@ -34,8 +34,7 @@ export default function Home() {
             Grow Better Habits With Your <span className="text-emerald-600 dark:text-green-500">Panda Companion</span>
           </h1>
           <p className="mt-6 text-xl text-stone-700 dark:text-amber-200 font-semibold max-w-2xl">
-            HabitFlow Panda Jungle is a playfully gamified tracker where building consistency is rewarded. 
-            Build streaks, earn bamboo, and transform your jungle one habit at a time.
+            Build better habits with your panda companion. Stay consistent, earn rewards, grow your streaks, and transform a small bamboo grove into a thriving jungle of achievement.
           </p>
           <Link href="/dashboard" className="mt-10">
             <Button size="lg" className="text-lg px-8 py-6 rounded-3xl shadow-xl shadow-green-500/20 border-2 border-stone-800 dark:border-amber-200 font-bold bg-green-500 hover:bg-green-600 text-white dark:bg-green-600 dark:hover:bg-green-500">
@@ -51,7 +50,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-5xl font-black text-stone-900 dark:text-amber-100">Everything you need to stay consistent</h2>
               <p className="text-stone-700 dark:text-amber-200 font-semibold mt-4">Gamify your life with powerful features built right in.</p>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-gradient-to-br from-stone-50 to-amber-50 dark:from-stone-800 dark:to-amber-900/20 p-8 rounded-3xl border-2 border-stone-800 dark:border-amber-200 shadow-lg hover:scale-105 transition-transform duration-300">
                 <div className="w-14 h-14 bg-stone-200 dark:bg-stone-700 text-stone-700 dark:text-amber-200 border-2 border-stone-800 dark:border-amber-200 rounded-2xl flex items-center justify-center mb-6 font-bold">
@@ -83,7 +82,7 @@ export default function Home() {
           <div className="container mx-auto max-w-4xl">
             <h2 className="text-3xl md:text-5xl font-black text-center mb-16 text-stone-900 dark:text-amber-100">How it Works</h2>
             <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-1 before:bg-stone-300 dark:before:bg-stone-700">
-              
+
               <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-stone-800 dark:border-amber-200 bg-emerald-500 text-white font-black text-xl shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">1</div>
                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gradient-to-br from-stone-50 to-amber-50 dark:from-stone-800 dark:to-amber-900/20 p-6 rounded-3xl border-2 border-stone-800 dark:border-amber-200 shadow-lg">
