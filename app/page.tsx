@@ -29,7 +29,7 @@ export default function Home() {
 
       <div className="relative z-10">
         {/* Hero Section */}
-        <section className="relative flex flex-col items-center justify-center text-center py-20 md:py-32 px-4 md:px-6">
+        <section className="mt-14 md:mt-0 relative flex flex-col items-center justify-center text-center py-20 md:py-32 px-4 md:px-6">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight max-w-4xl text-stone-900 dark:text-amber-100 leading-[1.15]">
             Grow Better Habits With Your <span className="text-emerald-600 dark:text-green-500">Panda Companion</span>
           </h1>
@@ -117,7 +117,7 @@ export default function Home() {
               <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                 <div className="flex items-center justify-center w-12 h-12 rounded-full border-4 border-stone-800 dark:border-amber-200 bg-emerald-500 text-white font-black text-xl shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">5</div>
                 <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gradient-to-br from-stone-50 to-amber-50 dark:from-stone-800 dark:to-amber-900/20 p-6 rounded-3xl border-2 border-stone-800 dark:border-amber-200 shadow-lg">
-                  <h4 className="font-black text-xl mb-1 text-stone-900 dark:text-amber-100">The Jungle Shop 🛒</h4>
+                  <h4 className="font-black text-xl mb-1 text-stone-900 dark:text-amber-100">The Jungle Shop</h4>
                   <p className="text-stone-700 dark:text-amber-200 font-semibold">Spend your hard-earned Bamboo on 3D decorations for your Panda's habitat! Equip items to see them appear live on your dashboard.</p>
                 </div>
               </div>
@@ -137,7 +137,7 @@ export default function Home() {
             </p>
             <Link href="/dashboard" className="relative z-10">
               <Button size="lg" className="text-xl px-10 py-8 rounded-3xl shadow-xl bg-white text-emerald-800 hover:bg-stone-100 border-2 border-stone-800 font-black">
-                Launch App 🚀
+                Launch App
               </Button>
             </Link>
           </div>
